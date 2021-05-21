@@ -56,6 +56,11 @@ class MainAdapter (private var items:MutableList<ConfirmedResponseItem>, private
         }
     }
 
+    fun resetData(){
+        items.clear()
+        notifyDataSetChanged()
+    }
+
     fun addItem(confirmedResponseItem: ConfirmedResponseItem){
         items.add(confirmedResponseItem)
         notifyDataSetChanged()

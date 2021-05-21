@@ -32,6 +32,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         init()
+
+        itemsswipetorefresh.setOnRefreshListener {
+            init()
+            itemsswipetorefresh.isRefreshing = false
+        }
     }
 
     private fun init(){
@@ -41,7 +46,9 @@ class MainActivity : AppCompatActivity() {
         progressBar.visibility = View.VISIBLE
         rv_confirmed.visibility = View.GONE
 
+        listConfirmed = mutableListOf()
         adapter = MainAdapter(listConfirmed!!,this)
+        adapter.resetData()
         mLayoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         rv_confirmed.setLayoutManager(mLayoutManager)
         rv_confirmed.adapter = adapter
